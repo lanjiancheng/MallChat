@@ -31,6 +31,7 @@ import static com.abin.mallchat.common.common.service.frequencycontrol.Frequency
 @Component
 public class FrequencyControlAspect {
 
+    // TODO 限流重点方法
     @Around("@annotation(com.abin.mallchat.common.common.annotation.FrequencyControl)||@annotation(com.abin.mallchat.common.common.annotation.FrequencyControlContainer)")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
@@ -55,6 +56,7 @@ public class FrequencyControlAspect {
         // 将注解的参数转换为编程式调用需要的参数
         List<FrequencyControlDTO> frequencyControlDTOS = keyMap.entrySet().stream().map(entrySet -> buildFrequencyControlDTO(entrySet.getKey(), entrySet.getValue())).collect(Collectors.toList());
         // 调用编程式注解
+        // TODO 注解式限流 最终还是会编程式的逻辑
         return FrequencyControlUtil.executeWithFrequencyControlList(TOTAL_COUNT_WITH_IN_FIX_TIME_FREQUENCY_CONTROLLER, frequencyControlDTOS, joinPoint::proceed);
     }
 

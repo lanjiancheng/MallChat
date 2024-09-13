@@ -14,6 +14,8 @@ import java.util.concurrent.TimeUnit;
  * @date 2023/07/03
  *
  */
+
+// TODO 查看是怎么实现限流的
 public class FrequencyControlDTO {
     /**
      * 代表频控的Key 如果target为Key的话 这里要传值用于构建redis的Key target为Ip或者UID的话会从上下文取值 Key字段无需传值
