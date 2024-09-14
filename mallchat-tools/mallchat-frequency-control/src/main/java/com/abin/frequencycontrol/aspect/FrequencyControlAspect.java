@@ -40,6 +40,7 @@ public class FrequencyControlAspect {
         for (int i = 0; i < annotationsByType.length; i++) {
             // 获取频控注解
             FrequencyControl frequencyControl = annotationsByType[i];
+            // 根据不同的频控对象，组装不同的key。前缀默认也是类名+方法名。由于有多个相同注解，我们还需要给每个频控对象加上一个专属下标，防止重复。（所以新增频控策略注解要加在最下方）
             String prefix = StrUtil.isBlank(frequencyControl.prefixKey()) ? /* 默认方法限定名 + 注解排名（可能多个）*/method.toGenericString() + ":index:" + i : frequencyControl.prefixKey();
             String key = "";
             switch (frequencyControl.target()) {

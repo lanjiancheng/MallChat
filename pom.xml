@@ -10,6 +10,7 @@
     <modules>
         <module>mallchat-chat-server</module>
         <module>mallchat-tools</module>
+        <module>huajuaner-starter-test</module>
     </modules>
     <packaging>pom</packaging>
 

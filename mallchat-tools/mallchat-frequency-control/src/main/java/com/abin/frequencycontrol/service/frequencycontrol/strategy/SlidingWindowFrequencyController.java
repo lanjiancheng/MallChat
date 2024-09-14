@@ -48,8 +48,9 @@ public class SlidingWindowFrequencyController extends AbstractFrequencyControlSe
             // 窗口最小周期转秒
             long period = controlDTO.getUnit().toMillis(controlDTO.getPeriod());
             long current = System.currentTimeMillis();
-            // 窗口大小 单位 秒
+            // 窗口大小 单位 秒 这里是10秒，目的要清除当前时间10秒前的请求
             long length = period * controlDTO.getWindowSize();
+            // 窗口开始时间：当前时间 - 10s
             long start = current - length;
 //            long expireTime = length + period;
             RedisUtils.ZSetAddAndExpire(key, start, length, current);

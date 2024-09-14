@@ -42,7 +42,7 @@ public class WebLogAspect {
      * 如果ApiResult返回success=true，则打印info日志；
      * 特别注意：由于info级别日志已经包含了warn级别日志。如果开了info级别日志，warn就不会打印了。
      */
-    @Around("execution(* com..controller..*.*(..))")
+    @Around("execution(* com..com.com.com.controller..*.*(..))")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
         String method = request.getMethod();

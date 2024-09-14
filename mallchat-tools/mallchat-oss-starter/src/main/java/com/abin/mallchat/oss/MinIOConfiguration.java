@@ -13,13 +13,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(OssProperties.class)
 @ConditionalOnExpression("${oss.enabled}")
-@ConditionalOnProperty(value = "oss.type", havingValue = "minio")
+@ConditionalOnProperty(value = "oss.type", havingValue = "minio") // ConditionalOnProperty注解表达，某个属性等于某个值的时候，才触发某些装在
 public class MinIOConfiguration {
 
 
     @Bean
     @SneakyThrows
-    @ConditionalOnMissingBean(MinioClient.class)
+    @ConditionalOnMissingBean(MinioClient.class) // 用于标识当前类路径中不存在某个类的时候，才触发
     public MinioClient minioClient(OssProperties ossProperties) {
         return MinioClient.builder()
                 .endpoint(ossProperties.getEndpoint())
@@ -29,7 +29,7 @@ public class MinIOConfiguration {
 
     @Bean
     @ConditionalOnBean({MinioClient.class})
-    @ConditionalOnMissingBean(MinIOTemplate.class)
+    @ConditionalOnMissingBean(MinIOTemplate.class) // 用于标识当前类路径中不存在某个类的时候，才触发
     public MinIOTemplate minioTemplate(MinioClient minioClient, OssProperties ossProperties) {
         return new MinIOTemplate(minioClient, ossProperties);
     }

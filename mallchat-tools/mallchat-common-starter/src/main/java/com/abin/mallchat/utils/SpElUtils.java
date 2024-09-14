@@ -27,4 +27,20 @@ public class SpElUtils {
     public static String getMethodKey(Method method) {
         return method.getDeclaringClass() + "#" + method.getName();
     }
+
+    public static void main(String[] args) throws NoSuchMethodException {
+        // 获取一个方法实例
+        Method method = SpElUtils.class.getMethod("exampleMethod", String.class, int.class);
+
+        // 测试 SpEL 表达式解析
+        String spEl = "'Hello ' + #name + ', your number is ' + #number";
+        Object[] aaa = new Object[]{"John", 42};
+        String result = SpElUtils.parseSpEl(method, aaa, spEl);
+        System.out.println(result);
+    }
+
+    public  void exampleMethod(String name, int number) {
+        // 方法内容无关紧要，仅用于测试
+    }
+
 }

@@ -25,6 +25,17 @@ public class RedisUtils {
         RedisUtils.stringRedisTemplate = SpringUtil.getBean(StringRedisTemplate.class);
     }
 
+    /**
+     * 这段 Lua 脚本实现了一个原子操作，具体行为如下：
+     *
+     * 如果键不存在，则创建该键，值设置为 1，并设置指定的过期时间（ttl）。
+     * 如果键已经存在，则直接将其值加 1，并返回递增后的值。
+     *
+     *
+     * 计数器：当你需要在 Redis 中维护一个计数器时，这个脚本非常有用。例如，记录某个操作的调用次数，或者对某个资源的访问量进行计数。
+     * 限流：可以用于实现限流逻辑，结合计数器和过期时间，监控特定时间窗口内某个操作的执行次数。
+     * 防重入：在分布式环境中，可以用此脚本来确保某个操作在特定时间内只执行一次。
+     */
     private static final String LUA_INCR_EXPIRE =
             "local key,ttl=KEYS[1],ARGV[1] \n" +
                     " \n" +
