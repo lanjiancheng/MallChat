@@ -11,6 +11,8 @@
         <module>mallchat-chat-server</module>
         <module>mallchat-tools</module>
         <module>huajuaner-starter-test</module>
+        <module>schedule-spring-boot-starter-test</module>
+        <module>schedule-middleware-controller</module>
     </modules>
     <packaging>pom</packaging>
 

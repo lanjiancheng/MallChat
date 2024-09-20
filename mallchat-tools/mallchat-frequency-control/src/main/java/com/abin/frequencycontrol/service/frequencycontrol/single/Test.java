@@ -125,7 +125,7 @@ public class Test {
 
     private static void tick() {
         Thread timer = new Thread(new TimerTask());
-        timer.setName("sentinel-timer-task");
+        timer.setName("sentinel-timer-com.huajuaner.task");
         timer.start();
     }
 
